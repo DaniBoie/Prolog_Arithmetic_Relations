@@ -76,3 +76,45 @@ simplify_helper(E ^ Y, E ^ Y).
 
 % deriv(E,D) to do symbolic differentiation of polynomial arithmetic expressions with respect to x.
 
+
+
+% party_seating(L) that seats party guests around a round table according to the following constraints, when given a list of facts about the guests
+
+male(Klefstad).
+male(Bill).
+male(Mark).
+male(Isaac).
+male(Fred).
+female(Emily).
+female(Heidi).
+female(Beth).
+female(Susan).
+female(Jane).
+speaks(Klefstad, English).
+speaks(Bill, English).
+speaks(Emily, English).
+speaks(Heidi, English).
+speaks(Isaac, English).
+speaks(Mark, French).
+speaks(Beth, French).
+speaks(Susan, French).
+speaks(Isaac, French).
+speaks(Klefstad, Spanish).
+speaks(Bill, Spanish).
+speaks(Susan, Spanish).
+speaks(Fred, Spanish).
+speaks(Jane, Spanish).
+
+% Guests spead different languages, and some speak more than one language.
+% Invited 9 guests for a round table discussion, total 10 people. total 10 seats
+% First person in list will be seated next to last person (circular table)
+% adjacent guests must speak the same langage
+% no two females can sit next to each other
+% 
+add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
+
+party_seating(L) :- add_guests([], L).
+
+
+
+% party_seating_helper(L, N) :-
