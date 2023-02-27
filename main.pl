@@ -119,7 +119,7 @@ speaks(jane, Spanish).
 party_seating([H|T]) :- male(H), validSeating([H], T).
 party_seating([H|T]) :- female(H), validSeating([H], T).
 
-validSeating([H | E], [Left | T]) :- speaksSame(H, Left), validGender(H, Left).
+validSeating([H | E], [Left | T]) :- speaksSame(H, Left), validGender(H, Left), validSeating(E, T).
 
 
 speaksSame(X, Y) :- speaks(X, English), speaks(Y, English).
