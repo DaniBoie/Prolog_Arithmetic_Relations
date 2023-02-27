@@ -30,18 +30,19 @@ simplify(E / 1, E).
 simplify(E ^ 0, 1).
 simplify(E ^ 1, E).
 simplify(0 ^ E, 0).
+% PEMDAS
 
-simplify(E + Y, S) :- integer(E), integer(Y), S is E + Y.
-simplify(E - Y, S) :- integer(E), integer(Y), S is E - Y.
+simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify(E * Y, S) :- integer(E), integer(Y), S is E * Y.
 simplify(E / Y, S) :- integer(E), integer(Y), S is E / Y.
-simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
+simplify(E + Y, S) :- integer(E), integer(Y), S is E + Y.
+simplify(E - Y, S) :- integer(E), integer(Y), S is E - Y.
 
-simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE + EvalY, S).
-simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE - EvalY, S).
+simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE ^ EvalY, S).
 simplify(E * Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE * EvalY, S).
 simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE / EvalY, S).
-simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE ^ EvalY, S).
+simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE + EvalY, S).
+simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE - EvalY, S).
 
 
 simplify_helper(E - E, 0).
@@ -60,17 +61,17 @@ simplify_helper(E ^ 0, 1).
 simplify_helper(E ^ 1, E).
 simplify_helper(0 ^ E, 0).
 
-simplify_helper(E + Y, S) :- integer(E), integer(Y), S is E + Y.
-simplify_helper(E - Y, S) :- integer(E), integer(Y), S is E - Y.
+simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify_helper(E * Y, S) :- integer(E), integer(Y), S is E * Y.
 simplify_helper(E / Y, S) :- integer(E), integer(Y), S is E / Y.
-simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
+simplify_helper(E + Y, S) :- integer(E), integer(Y), S is E + Y.
+simplify_helper(E - Y, S) :- integer(E), integer(Y), S is E - Y.
 
-simplify_helper(E + Y, E + Y).
-simplify_helper(E - Y, E - Y).
+simplify_helper(E ^ Y, E ^ Y).
 simplify_helper(E * Y, E * Y).
 simplify_helper(E / Y, E / Y).
-simplify_helper(E ^ Y, E ^ Y).
+simplify_helper(E + Y, E + Y).
+simplify_helper(E - Y, E - Y).
 
 
 
