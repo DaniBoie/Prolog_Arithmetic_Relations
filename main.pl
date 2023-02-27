@@ -14,25 +14,41 @@ eval(E ^ Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE ^ EvalY.
 simplify(E, E) :- integer(E).
 simplify(E, E) :- atom(E).
 
-simplify(E + Y, E + Y) :- integer(E), atom(Y).
-simplify(E + Y, E + Y) :- integer(Y), atom(E).
-
-simplify(E - Y, E - Y) :- integer(E), atom(Y).
-simplify(E - Y, E - Y) :- integer(Y), atom(E).
-
-simplify(E * Y, E * Y) :- integer(E), atom(Y).
-simplify(E * Y, E * Y) :- integer(Y), atom(E).
-
-simplify(E / Y, E / Y) :- integer(E), atom(Y).
-simplify(E / Y, E / Y) :- integer(Y), atom(E).
-
-simplify(E ^ Y, E ^ Y) :- integer(E), atom(Y).
-simplify(E ^ Y, E ^ Y) :- integer(Y), atom(E).
-
 simplify(E - E, 0) :- atom(E).
 simplify(E / E, 1) :- atom(E).
 simplify(E ^ 0, 1) :- atom(E).
 simplify(E ^ 1, E) :- atom(E).
+% simplify(E + Y, E + Y) :- integer(E), atom(Y).
+% simplify(E + Y, E + Y) :- integer(Y), atom(E).
+
+% simplify(E - Y, E - Y) :- integer(E), atom(Y).
+% simplify(E - Y, E - Y) :- integer(Y), atom(E).
+
+% simplify(E * Y, E * Y) :- integer(E), atom(Y).
+% simplify(E * Y, E * Y) :- integer(Y), atom(E).
+
+% simplify(E / Y, E / Y) :- integer(E), atom(Y).
+% simplify(E / Y, E / Y) :- integer(Y), atom(E).
+
+% simplify(E ^ Y, E ^ Y) :- integer(E), atom(Y).
+% simplify(E ^ Y, E ^ Y) :- integer(Y), atom(E).
+
+simplify(E + Y, S) :- simplify(E, SimpleE), atom(Y), simplify(SimpleE + Y, S).
+simplify(E + Y, S) :- simplify(Y, SimpleY), atom(E), simplify(E + SimpleY, S).
+
+simplify(E - Y, S) :- simplify(E, SimpleE), atom(Y), simplify(SimpleE - Y, S).
+simplify(E - Y, S) :- simplify(Y, SimpleY), atom(E), simplify(E - SimpleY, S).
+
+simplify(E * Y, S) :- simplify(E, SimpleE), atom(Y), simplify(SimpleE * Y, S).
+simplify(E * Y, S) :- simplify(Y, SimpleY), atom(E), simplify(E * SimpleY, S).
+
+simplify(E / Y, S) :- simplify(E, SimpleE), atom(Y), simplify(SimpleE / Y, S).
+simplify(E / Y, S) :- simplify(Y, SimpleY), atom(E), simplify(E / SimpleY, S).
+
+simplify(E ^ Y, S) :- simplify(E, SimpleE), atom(Y), simplify(SimpleE ^ Y, S).
+simplify(E ^ Y, S) :- simplify(Y, SimpleY), atom(E), simplify(E ^ SimpleY, S).
+
+
 
 simplify(E + Y, EvalE + EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
 simplify(E - Y, EvalE - EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
