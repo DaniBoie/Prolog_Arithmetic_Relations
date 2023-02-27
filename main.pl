@@ -31,15 +31,18 @@ simplify(E ^ 0, 1).
 simplify(E ^ 1, E).
 simplify(0 ^ E, 0).
 
+simplify(E + Y, S) :- integer(E), integer(Y), S is E + Y.
+simplify(E - Y, S) :- integer(E), integer(Y), S is E - Y.
+simplify(E * Y, S) :- integer(E), integer(Y), S is E * Y.
+simplify(E / Y, S) :- integer(E), integer(Y), S is E / Y.
+simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
+
 simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE + EvalY, S).
 simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE - EvalY, S).
 simplify(E * Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE * EvalY, S).
 simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE / EvalY, S).
 simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE ^ EvalY, S).
 
-
-% simplify_helper(E, E) :- integer(E).
-% simplify_helper(E, E) :- atom(E).
 
 simplify_helper(E - E, 0).
 simplify_helper(E - 0, E).
