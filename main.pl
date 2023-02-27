@@ -14,6 +14,8 @@ eval(E ^ Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE ^ EvalY.
 
 simplify(E, E) :- atom(E).
 
+simplify(E + Y, S) :- integer(E), atom(Y), eval(E, EvalE), S is EvalE + Y.
+
 
 % deriv(E,D) to do symbolic differentiation of polynomial arithmetic expressions with respect to x.
 
