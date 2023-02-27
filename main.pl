@@ -13,8 +13,8 @@ eval(E ^ Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE ^ EvalY.
 % simplify(E,S) that simplifies polynomial arithmetic expressions involving constants, variables (which are Prolog atoms that start with a lowercase letter), and operators +,-,*,/,^.
 
 % simplify(E, E) :- integer(E).
-% simplify(E, E) :- atom(E).
 
+simplify(E, E).
 simplify(E - E, 0).
 simplify(E * 0, 0).
 simplify(E * 1, E).
