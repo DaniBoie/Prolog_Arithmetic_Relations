@@ -113,7 +113,7 @@ speaks(Jane, Spanish).
 % 
 add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
 
-party_seating(L) :- findall(Guest, male(Guest), L).
+party_seating(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
 
