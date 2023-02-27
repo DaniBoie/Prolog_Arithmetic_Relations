@@ -119,12 +119,9 @@ speaks(jane, spanish).
 ps([H|T]) :- male(H), validSeating([H], T).
 ps([H|T]) :- female(H), validSeating([H], T).
 
-validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L) .
+validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L).
 
-speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z).
-% speaksSame(X, Y) :- speaks(X, french), speaks(Y, french).
-% speaksSame(X, Y) :- speaks(X, spanish), speaks(Y, spanish).
+speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z), !.
 
-validGender(X, Y) :- male(X), female(Y).
-validGender(X, Y) :- female(X), male(Y).
-% party_seating_helper(L, N) :-
+validGender(X, Y) :- male(X), female(Y), !.
+validGender(X, Y) :- female(X), male(Y), !.
