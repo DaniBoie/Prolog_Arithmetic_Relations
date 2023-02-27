@@ -60,6 +60,12 @@ simplify_helper(E ^ 0, 1).
 simplify_helper(E ^ 1, E).
 simplify_helper(0 ^ E, 0).
 
+simplify_helper(E + Y, S) :- integer(E), integer(Y), S is E + Y.
+simplify_helper(E - Y, S) :- integer(E), integer(Y), S is E - Y.
+simplify_helper(E * Y, S) :- integer(E), integer(Y), S is E * Y.
+simplify_helper(E / Y, S) :- integer(E), integer(Y), S is E / Y.
+simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
+
 simplify_helper(E + Y, E + Y).
 simplify_helper(E - Y, E - Y).
 simplify_helper(E * Y, E * Y).
