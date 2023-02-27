@@ -119,7 +119,7 @@ speaks(jane, spanish).
 ps([H|T]) :- male(H), validSeating([H], T).
 ps([H|T]) :- female(H), validSeating([H], T).
 
-validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L).
+validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L), !.
 
 speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z), !.
 
