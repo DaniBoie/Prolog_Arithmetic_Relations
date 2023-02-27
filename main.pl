@@ -86,7 +86,7 @@ deriv(E * Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y + E 
 
 deriv(E / Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
 
-deriv(E ^ Y, D) :- simplify(Y*E^Y-1, D).
+deriv(E ^ Y, D) :- simplify(Y*E^(Y-1), D).
 
 
 
