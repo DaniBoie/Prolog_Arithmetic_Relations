@@ -121,10 +121,9 @@ ps([H|T]) :- female(H), validSeating([H], T).
 
 validSeating(H, [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating(Person, L) .
 
-
-speaksSame(X, Y) :- speaks(X, English), speaks(Y, English).
-speaksSame(X, Y) :- speaks(X, French), speaks(Y, French).
-speaksSame(X, Y) :- speaks(X, Spanish), speaks(Y, Spanish).
+speaksSame(X, Y) :- speaks(X, english), speaks(Y, english).
+speaksSame(X, Y) :- speaks(X, french), speaks(Y, french).
+speaksSame(X, Y) :- speaks(X, spanish), speaks(Y, spanish).
 
 validGender(X, Y) :- male(X), female(Y).
 validGender(X, Y) :- female(X), male(Y).
