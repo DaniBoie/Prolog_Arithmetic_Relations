@@ -76,6 +76,18 @@ simplify_helper(E ^ Y, E ^ Y).
 
 % deriv(E,D) to do symbolic differentiation of polynomial arithmetic expressions with respect to x.
 
+deriv(E, 1) :- atom(E).
+deriv(E, 0) :- integer(E).
+
+deriv(E + Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE + DerivY, D).
+deriv(E - Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE - DerivY, D).
+
+deriv(E * Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y + E * DerivY , D ).
+
+deriv(E / Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
+
+deriv(E ^ Y, D) :- simplify(Y*E^Y-1, D).
+
 
 
 % party_seating(L) that seats party guests around a round table according to the following constraints, when given a list of facts about the guests
@@ -116,12 +128,12 @@ speaks(jane, spanish).
 % party_seating(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
-ps([H|T]) :- male(H), validSeating([H], T).
-ps([H|T]) :- female(H), validSeating([H], T).
+party_seating([H|T]) :- male(H), validSeating([H], T).
+party_seating([H|T]) :- female(H), validSeating([H], T).
 
-validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L), !.
+validSeating([H], [Person | L]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L).
 
-speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z), !.
+speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z).
 
-validGender(X, Y) :- male(X), female(Y), !.
-validGender(X, Y) :- female(X), male(Y), !.
+validGender(X, Y) :- male(X), female(Y).
+validGender(X, Y) :- female(X), male(Y).
