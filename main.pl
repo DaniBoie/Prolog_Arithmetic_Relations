@@ -1,2 +1,2 @@
 
-eval(E, V):- write(E).
+eval([Head | E], V):- write(Head).
