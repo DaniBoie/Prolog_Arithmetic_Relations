@@ -27,17 +27,17 @@ simplify(E ^ 0, 1).
 simplify(E ^ 1, E).
 
 
-% simplify(E + Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE + EvalY.
-% simplify(E - Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE - EvalY.
-% simplify(E * Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE * EvalY.
-% simplify(E / Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE / EvalY.
-% simplify(E ^ Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE ^ EvalY.
+simplify(E + Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE + EvalY.
+simplify(E - Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE - EvalY.
+simplify(E * Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE * EvalY.
+simplify(E / Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE / EvalY.
+simplify(E ^ Y, V) :- simplify(E, EvalE), simplify(Y, EvalY), V is EvalE ^ EvalY.
 
-simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE + EvalY, S).
-simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE - EvalY, S).
-simplify(E * Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE * EvalY, S).
-simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE / EvalY, S).
-simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE ^ EvalY, S).
+% simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE + EvalY, S).
+% simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE - EvalY, S).
+% simplify(E * Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE * EvalY, S).
+% simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE / EvalY, S).
+% simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify(EvalE ^ EvalY, S).
 
 % simplify(E ^ Y, EvalE ^ EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
 % simplify(E * Y, EvalE * EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
