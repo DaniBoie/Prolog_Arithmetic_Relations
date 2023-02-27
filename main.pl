@@ -90,20 +90,20 @@ female(heidi).
 female(beth).
 female(susan).
 female(jane).
-speaks(klefstad, English).
-speaks(bill, English).
-speaks(emily, English).
-speaks(heidi, English).
-speaks(isaac, English).
-speaks(mark, French).
-speaks(beth, French).
-speaks(susan, French).
-speaks(isaac, French).
-speaks(klefstad, Spanish).
-speaks(bill, Spanish).
-speaks(susan, Spanish).
-speaks(fred, Spanish).
-speaks(jane, Spanish).
+speaks(klefstad, english).
+speaks(bill, english).
+speaks(emily, english).
+speaks(heidi, english).
+speaks(isaac, english).
+speaks(mark, french).
+speaks(beth, french).
+speaks(susan, french).
+speaks(isaac, french).
+speaks(klefstad, spanish).
+speaks(bill, spanish).
+speaks(susan, spanish).
+speaks(fred, spanish).
+speaks(jane, spanish).
 
 % Guests spead different languages, and some speak more than one language.
 % Invited 9 guests for a round table discussion, total 10 people. total 10 seats
