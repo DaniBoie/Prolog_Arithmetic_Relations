@@ -51,11 +51,11 @@ simplify_helper(E / E, 1).
 simplify_helper(E / 1, E).
 simplify_helper(E ^ 0, 1).
 simplify_helper(E ^ 1, E).
-simplify(E + Y, E + Y).
-simplify(E - Y, E - Y).
-simplify(E * Y, E * Y).
-simplify(E / Y, E / Y).
-simplify(E ^ Y, E ^ Y).
+simplify_helper(E + Y, E + Y).
+simplify_helper(E - Y, E - Y).
+simplify_helper(E * Y, E * Y).
+simplify_helper(E / Y, E / Y).
+simplify_helper(E ^ Y, E ^ Y).
 
 % simplify(E ^ Y, EvalE ^ EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
 % simplify(E * Y, EvalE * EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
