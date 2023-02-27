@@ -79,6 +79,8 @@ simplify_helper(E ^ Y, E ^ Y).
 deriv(E, 1) :- atom(E).
 deriv(E, 0) :- integer(E).
 
+preriv(E, D) :- simplify(E, R), deriv(R, D).
+
 deriv(E + Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE + DerivY, D).
 deriv(E - Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE - DerivY, D).
 
