@@ -80,30 +80,30 @@ simplify_helper(E ^ Y, E ^ Y).
 
 % party_seating(L) that seats party guests around a round table according to the following constraints, when given a list of facts about the guests
 
-male(Klefstad).
-male(Bill).
-male(Mark).
-male(Isaac).
-male(Fred).
-female(Emily).
-female(Heidi).
-female(Beth).
-female(Susan).
-female(Jane).
-speaks(Klefstad, English).
-speaks(Bill, English).
-speaks(Emily, English).
-speaks(Heidi, English).
-speaks(Isaac, English).
-speaks(Mark, French).
-speaks(Beth, French).
-speaks(Susan, French).
-speaks(Isaac, French).
-speaks(Klefstad, Spanish).
-speaks(Bill, Spanish).
-speaks(Susan, Spanish).
-speaks(Fred, Spanish).
-speaks(Jane, Spanish).
+male(klefstad).
+male(bill).
+male(mark).
+male(isaac).
+male(fred).
+female(emily).
+female(heidi).
+female(beth).
+female(susan).
+female(jane).
+speaks(klefstad, English).
+speaks(bill, English).
+speaks(emily, English).
+speaks(heidi, English).
+speaks(isaac, English).
+speaks(mark, French).
+speaks(beth, French).
+speaks(susan, French).
+speaks(isaac, French).
+speaks(klefstad, Spanish).
+speaks(bill, Spanish).
+speaks(susan, Spanish).
+speaks(fred, Spanish).
+speaks(jane, Spanish).
 
 % Guests spead different languages, and some speak more than one language.
 % Invited 9 guests for a round table discussion, total 10 people. total 10 seats
