@@ -15,6 +15,7 @@ simplify(E, E) :- integer(E).
 simplify(E, E) :- atom(E).
 
 simplify(E - E, 0) :- atom(E).
+simplify(E * 1, E) :- atom(E).
 simplify(E / E, 1) :- atom(E).
 simplify(E ^ 0, 1) :- atom(E).
 simplify(E ^ 1, E) :- atom(E).
