@@ -34,11 +34,11 @@ simplify(E / E, 1) :- atom(E).
 simplify(E ^ 0, 1) :- atom(E).
 simplify(E ^ 1, E) :- atom(E).
 
-simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), S is EvalE + EvalY.
-simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), S is EvalE - EvalY.
-simplify(E * Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), S is EvalE * EvalY.
-simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), S is EvalE / EvalY.
-simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), S is EvalE ^ EvalY.
+simplify(E + Y, EvalE + EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
+simplify(E - Y, EvalE - EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
+simplify(E * Y, EvalE * EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
+simplify(E / Y, EvalE / EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
+simplify(E ^ Y, EvalE ^ EvalY) :- simplify(E, EvalE), simplify(Y, EvalY).
 
 
 
