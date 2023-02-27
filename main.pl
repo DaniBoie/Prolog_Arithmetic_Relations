@@ -32,6 +32,12 @@ simplify(E ^ 1, E) :- atom(E).
 
 % simplify(E ^ Y, E ^ Y) :- integer(E), atom(Y).
 % simplify(E ^ Y, E ^ Y) :- integer(Y), atom(E).
+simplify(E + Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE + EvalY, integer(E, Y).
+simplify(E - Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE - EvalY, integer(E, Y).
+simplify(E * Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE * EvalY, integer(E, Y).
+simplify(E / Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE / EvalY, integer(E, Y).
+simplify(E ^ Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE ^ EvalY, integer(E, Y).
+
 
 simplify(E + Y, SimpleE + Y) :- simplify(E, SimpleE), atom(Y).
 simplify(E + Y, E + SimpleY) :- simplify(Y, SimpleY), atom(E).
