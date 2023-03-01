@@ -12,6 +12,7 @@ eval(E ^ Y, V) :- eval(E, EvalE), eval(Y, EvalY), V is EvalE ^ EvalY.
 
 % simplify(E,S) that simplifies polynomial arithmetic expressions involving constants, variables (which are Prolog atoms that start with a lowercase letter), and operators +,-,*,/,^.
 
+% Instead of 5-(0-1/x^2) we need 5+1/x^2
 test(E * (X * Y)) :- integer(E), integer(X). 
 
 simplify(E, E) :- integer(E).
@@ -45,6 +46,7 @@ simplify(X * E / E, X) :- atom(E).
 
 simplify(E * ( X * Y ), S) :- integer(E), integer(X), simplify(Y, YR), NewLeft is E * X, simplify_helper(NewLeft * YR, S).
 % simplify(( X ) * E, S) :- integer(E), simplify(X, XR), simplify_helper(XR * E, S).
+simplify(X - (0 - Y / Z) , S) :- integer(X), integer(Y), simplify(Z, RZ), NewLeft is X + Y, simplify_helper(NewLeft/RZ, S).
 
 simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify(E * Y, S) :- integer(E), integer(Y), S is E * Y.
@@ -85,7 +87,7 @@ simplify_helper(1 ^ E, 1).
 simplify_helper(E * X / E, X) :- atom(E).
 simplify_helper(X * E / E, X) :- atom(E).
 
-simplify_helper(E * ( X ), ) :- integer(E), .
+simplify_helper(E * ( X ), ) :-  .
 simplify_helper(X * E / E, X) :- atom(E).
 
 simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
@@ -109,12 +111,12 @@ deriv_helper(E, 1) :- atom(E).
 deriv_helper(E, 0) :- integer(E).
 
 
-deriv_helper(E + Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE + DerivY, D).
-deriv_helper(E - Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE - DerivY, D).
+deriv_helper(E + Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify(DerivE + DerivY, D).
+deriv_helper(E - Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify(DerivE - DerivY, D).
 
-deriv_helper(E * Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y + E * DerivY , D ).
+deriv_helper(E * Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify( DerivE * Y + E * DerivY , D ).
 
-deriv_helper(E / Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
+deriv_helper(E / Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
 
 deriv_helper(E ^ Y, D) :- simplify(Y*E^(Y-1), D).
 
