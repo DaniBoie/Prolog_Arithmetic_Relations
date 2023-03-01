@@ -54,7 +54,7 @@ simplify(E - Y, S) :- integer(E), integer(Y), S is E - Y.
 
 
 simplify(E ^ Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE ^ EvalY, S).
-simplify(E * Y, S) :- not(integer(E)) simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE * EvalY, S).
+simplify(E * Y, S) :- not(integer(E)), simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE * EvalY, S).
 simplify(E / Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE / EvalY, S).
 simplify(E + Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE + EvalY, S).
 simplify(E - Y, S) :- simplify(E, EvalE), simplify(Y, EvalY), simplify_helper(EvalE - EvalY, S).
