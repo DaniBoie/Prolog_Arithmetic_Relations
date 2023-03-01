@@ -36,7 +36,10 @@ simplify(E ^ -1, 1/E).
 
 simplify(0 ^ E, 0).
 simplify(1 ^ E, 1).
-% PEMDAS
+
+
+simplify(E + X / E, X) :- atom(E).
+simplify(X + E / E, X) :- atom(E).
 
 simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify(E * Y, S) :- integer(E), integer(Y), S is E * Y.
@@ -147,7 +150,7 @@ speaks(jane, spanish).
 party_seating([H|T]) :- male(H), validSeating([H], [], T).
 party_seating([H|T]) :- female(H), validSeating([H], [], T).
 
-% validSeating([H], [], [H]).
+validSeating([], H, H).
 validSeating(H, [Person | L], [Person | NewT]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L, NewT).
 
 speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z).
