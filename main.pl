@@ -101,20 +101,20 @@ simplify_helper(E - Y, E - Y).
 
 
 % deriv(E,D) to do symbolic differentiation of polynomial arithmetic expressions with respect to x.
+deriv(E, D) :- simplify(E, R), deriv_helper(R, D).
 
-deriv(E, 1) :- atom(E).
-deriv(E, 0) :- integer(E).
+deriv_helper(E, 1) :- atom(E).
+deriv_helper(E, 0) :- integer(E).
 
-preriv(E, D) :- simplify(E, R), deriv(R, D).
 
-deriv(E + Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE + DerivY, D).
-deriv(E - Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE - DerivY, D).
+deriv_helper(E + Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE + DerivY, D).
+deriv_helper(E - Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify(DerivE - DerivY, D).
 
-deriv(E * Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y + E * DerivY , D ).
+deriv_helper(E * Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y + E * DerivY , D ).
 
-deriv(E / Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
+deriv_helper(E / Y, D) :- deriv(E, DerivE), deriv(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
 
-deriv(E ^ Y, D) :- simplify(Y*E^(Y-1), D).
+deriv_helper(E ^ Y, D) :- simplify(Y*E^(Y-1), D).
 
 
 
