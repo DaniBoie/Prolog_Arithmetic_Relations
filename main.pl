@@ -172,11 +172,11 @@ speaks(jane, spanish).
 % 
 % add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
 
-% party_seating(L) :- findall(Guest, male(Guest) ; female(Guest), L).
+party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
-party_seating([H|R]) :- male(H), validSeating([H], T, R).
-party_seating([H|R]) :- female(H), validSeating([H], T, R).
+party_seating([H|R]) :- male(H), validSeating([H], T, R), party_attendees([H|R]).
+party_seating([H|R]) :- female(H), validSeating([H], T, R), party_attendees([H|R]).
 
 % party_seating([H|T]) :- male(H), validSeating([H], [], T).
 % party_seating([H|T]) :- female(H), validSeating([H], [], T).
@@ -188,7 +188,7 @@ speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z).
 
 validGender(X, Y) :- male(X), female(Y).
 validGender(X, Y) :- male(X), male(Y).
-validGender(X, Y) :- female(X), male(Y).
+% validGender(X, Y) :- female(X), male(Y). not valid or else at end of circular table 2 females can sit next to each other
 % append([ ], Y, Y).
 % append([X|L1],L2,[X|L3]):-append(L1,L2,L3).
 
