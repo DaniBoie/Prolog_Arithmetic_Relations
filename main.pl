@@ -110,6 +110,7 @@ deriv(E, D) :- deriv_helper(E, ER), simplify(ER, D).
 deriv_helper(E, 1) :- atom(E).
 deriv_helper(E, 0) :- integer(E).
 
+deriv_helper(X * Y * X / X, Y) :- atom(X), integer(Y).
 
 % deriv_helper(E + Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify(DerivE + DerivY, D).
 deriv_helper(E + Y, DerivE + DerivY) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY).
