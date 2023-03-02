@@ -172,7 +172,7 @@ speaks(jane, spanish).
 % 
 add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
 
-% party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
+party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
 party_seating([H|R]) :- male(H), validSeating([H], R, Y), party_attendees(Y).
