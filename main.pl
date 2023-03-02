@@ -87,7 +87,7 @@ simplify_helper(1 ^ E, 1).
 simplify_helper(E * X / E, X) :- atom(E).
 simplify_helper(X * E / E, X) :- atom(E).
 
-simplify_helper(X - (0 - Y / Z) , S) :- integer(X), integer(Y) , S is X + Y / Z.
+simplify_helper(X - (0 - Y / Z) , S / Z) :- integer(X), integer(Y) , S is X + Y.
 % simplify(0*x)
 
 simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
