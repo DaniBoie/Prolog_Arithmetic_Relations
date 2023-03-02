@@ -175,8 +175,8 @@ add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
 party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
-party_seating([H|R]) :- male(H), validSeating([H], R, Y), party_attendees(Y).
-party_seating([H|R]) :- female(H), validSeating([H], R, Y), party_attendees(Y).
+party_seating(Y) :- male(H), validSeating([H], R, Y), party_attendees([H | R]).
+party_seating(Y) :- female(H), validSeating([H], R, Y), party_attendees([H | R]).
 
 % party_seating([H|T]) :- male(H), validSeating([H], [], T).
 % party_seating([H|T]) :- female(H), validSeating([H], [], T).
