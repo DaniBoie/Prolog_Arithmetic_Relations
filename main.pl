@@ -91,6 +91,8 @@ simplify_helper(E * X / E, X) :- atom(E).
 simplify_helper(X * E / E, X) :- atom(E).
 
 simplify_helper(X - (0 - Y / Z^2) , S / Z^2) :- integer(X), integer(Y), atom(Z), S is X + Y.
+simplify_helper(W + X - (0 - Y / Z^2) , W + X + Y / Z^2) :- integer(X), integer(Y), atom(Z).
+
 % simplify(0*x)
 % simplify_helper(0 - X / Y, S) :- integer(X)
 
