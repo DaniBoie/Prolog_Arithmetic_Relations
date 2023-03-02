@@ -46,7 +46,8 @@ simplify(X * E / E, X) :- atom(E).
 
 simplify(E * ( X * Y ), S) :- integer(E), integer(X), simplify(Y, YR), NewLeft is E * X, simplify_helper(NewLeft * YR, S).
 % simplify(( X ) * E, S) :- integer(E), simplify(X, XR), simplify_helper(XR * E, S).
-simplify(X - (0 - Y / Z) , S) :- integer(X), integer(Y), simplify(Z, RZ), NewLeft is X + Y, simplify_helper(X+Y/RZ, S).
+% simplify(X - (0 - Y / Z) , S) :- integer(X), integer(Y), simplify(Z, RZ), NewLeft is X + Y, simplify_helper(X+Y/RZ, S).
+simplify(X - (0 - 1 / Y^2) , XR+1 / Y^2) :- integer(X), atom(Y), simplify(X, XR).
 
 simplify(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify(E * Y, S) :- integer(E), integer(Y), S is E * Y.
