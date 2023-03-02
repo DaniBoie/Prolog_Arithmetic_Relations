@@ -118,7 +118,7 @@ deriv_helper(E * Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simp
 
 deriv_helper(E / Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
 
-deriv_helper(E ^ Y, D) :- simplify(Y*E^Y-1, D).
+deriv_helper(E ^ Y, D) :- simplify(Y-1, X) simplify(Y*E^X, D).
 
 
 
