@@ -175,8 +175,8 @@ speaks(jane, spanish).
 % party_seating(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
-party_seating([H|T]) :- male(H), validSeating([H], [], T).
-party_seating([H|T]) :- female(H), validSeating([H], [], T).
+party_seating([H|T]) :- male(H), validSeating([H], T, R).
+party_seating([H|T]) :- female(H), validSeating([H], T, R).
 
 validSeating([], H, H).
 validSeating(H, [Person | L], [Person | NewT]) :- speaksSame(H, Person), validGender(H, Person), validSeating([Person], L, NewT).
@@ -184,4 +184,5 @@ validSeating(H, [Person | L], [Person | NewT]) :- speaksSame(H, Person), validGe
 speaksSame(X, Y) :- speaks(X, Z), speaks(Y, Z).
 
 validGender(X, Y) :- male(X), female(Y).
+validGender(X, Y) :- male(X), male(Y).
 validGender(X, Y) :- female(X), male(Y).
