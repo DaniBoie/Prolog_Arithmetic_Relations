@@ -170,13 +170,13 @@ speaks(jane, spanish).
 % adjacent guests must speak the same langage
 % no two females can sit next to each other
 % 
-% add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
+add_guests(GuestList, [Guest | GuestList]) :- male(Guest) ; female(Guest).
 
-party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
+% party_attendees(L) :- findall(Guest, male(Guest) ; female(Guest), L).
 
 
-party_seating([H|R]) :- male(H), validSeating([H], T, R), party_attendees([H|R]).
-party_seating([H|R]) :- female(H), validSeating([H], T, R), party_attendees([H|R]).
+party_seating([H|R]) :- male(H), validSeating([H], R, Y), party_attendees(Y).
+party_seating([H|R]) :- female(H), validSeating([H], R, Y), party_attendees(Y).
 
 % party_seating([H|T]) :- male(H), validSeating([H], [], T).
 % party_seating([H|T]) :- female(H), validSeating([H], [], T).
