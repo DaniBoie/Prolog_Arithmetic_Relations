@@ -180,7 +180,7 @@ party_seating(Y) :- female(H), validSeating([H], R, Y), party_attendees([H | R])
 
 % party_seating([H|T]) :- male(H), validSeating([H], [], T).
 % party_seating([H|T]) :- female(H), validSeating([H], [], T).
-% validSeating([H], [], [H]).
+validSeating([H], [], [H]).
 validSeating([H], [T], [H | T]) :- H =/= T, speaksSame(H, T), validGender(H, T).
 validSeating([H], [N | T], R) :- H =/= N, speaksSame(H, N), validGender(H, N), validSeating([N], T, R).
 
