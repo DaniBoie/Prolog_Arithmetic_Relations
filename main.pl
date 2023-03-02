@@ -88,7 +88,7 @@ simplify_helper(E * X / E, X) :- atom(E).
 simplify_helper(X * E / E, X) :- atom(E).
 
 simplify_helper(X - (0 - Y / Z) , S) :- integer(X), integer(Y) , S is X + Y / Z.
-
+% simplify(0*x)
 
 simplify_helper(E ^ Y, S) :- integer(E), integer(Y), S is E ^ Y.
 simplify_helper(E * Y, S) :- integer(E), integer(Y), S is E * Y.
@@ -118,7 +118,7 @@ deriv_helper(E * Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simp
 
 deriv_helper(E / Y, D) :- deriv_helper(E, DerivE), deriv_helper(Y, DerivY), simplify( DerivE * Y - E * DerivY/Y^2 , D ).
 
-deriv_helper(E ^ Y, D) :- simplify(Y*E^(Y-1), D).
+deriv_helper(E ^ Y, D) :- simplify(Y*E^Y-1, D).
 
 
 
